@@ -47,7 +47,7 @@ export default function Home() {
               Senior Product Engineer
             </Text>
             <Text fontSize="md" lineHeight="tall">
-              Hello! I'm Alexey Belozerov, a Senior Product Engineer and digital nomad. I specialize in developing web applications using technologies like Next.js, React.js, TypeScript, and Chrome Extensions.
+              Hello! I&apos;m Alexey Belozerov, a Senior Product Engineer and digital nomad. I specialize in developing web applications using technologies like Next.js, React.js, TypeScript, and Chrome Extensions.
               <br/><br/>
               Currently, I serve as a Senior Product Engineer at Pumas-AI, Inc., leading remote teams to build modern frontends. I co-founded WellDoneCode and created the popular browser extension PerfectPixel, which helps web developers achieve pixel-perfect designs.
             </Text>
@@ -98,7 +98,7 @@ export default function Home() {
               color={cardTextColor}
             >
               <Flex align="center">
-                <Image src="/perfectpixel-logo.png" boxSize="50px" mr={4} />
+                <Image src="/perfectpixel-logo.png" alt="PerfectPixel Logo" boxSize="50px" mr={4} />
                 <Link href="https://www.welldonecode.com/perfectpixel/" isExternal>
                   <Heading as="h3" size="md" _hover={{ textDecoration: "underline" }}>
                     PerfectPixel
@@ -125,7 +125,7 @@ export default function Home() {
                   Learn More
                 </Link>
                 <Flex align="center">
-                  <Image src="/chrome-web-store-logo.svg" boxSize="24px" mr={2} />
+                  <Image src="/chrome-web-store-logo.svg" alt="Chrome Web Store Logo" boxSize="24px" mr={2} />
                   <Link
                     href="https://chromewebstore.google.com/detail/perfectpixel-by-welldonec/dkaagdgjmgdmbnecmcefdhjekcoceebi"
                     color="teal.500"
@@ -156,7 +156,7 @@ export default function Home() {
               color={cardTextColor}
             >
               <Flex align="center">
-                <Image src="/large-files-transfers.jpeg" boxSize="50px" mr={4} />
+                <Image src="/large-files-transfers.jpeg" alt="Large Files Transfers" boxSize="50px" mr={4} />
                 <Link href="https://hackernoon.com/large-files-transfers-between-parts-of-chrome-extensions-for-manifest-v3" isExternal>
                   <Heading as="h3" size="md" _hover={{ textDecoration: "underline" }}>
                     Large Files Transfers Between Parts of Chrome Extensions for Manifest V3
@@ -164,7 +164,7 @@ export default function Home() {
                 </Link>
               </Flex>
               <Text mt={2}>
-                A detailed guide on managing large file transfers in Chrome extensions, addressing the 'message length exceeded maximum allowed length' issue.
+                A detailed guide on managing large file transfers in Chrome extensions, addressing the &apos;message length exceeded maximum allowed length&apos; issue.
               </Text>
               <Text mt={1} color="gray.500" fontSize="sm">
                 Published on June 7, 2024
@@ -179,7 +179,7 @@ export default function Home() {
               color={cardTextColor}
             >
               <Flex align="center">
-                <Image src="/react-file-structure.jpeg" boxSize="50px" mr={4} />
+                <Image src="/react-file-structure.jpeg" alt="React File Structure" boxSize="50px" mr={4} />
                 <Link href="https://hackernoon.com/developing-an-easy-to-use-file-structure-for-an-extensive-react-frontend-application" isExternal>
                   <Heading as="h3" size="md" _hover={{ textDecoration: "underline" }}>
                     Developing an Easy-to-Use File Structure for an Extensive React Frontend Application
@@ -218,7 +218,6 @@ export default function Home() {
               </Heading>
               <Text mt={2}>Paper Id: IJ-1906240236</Text>
             </Box>
-            {/* Add more academic articles as needed */}
           </VStack>
         </Box>
       </Container>
