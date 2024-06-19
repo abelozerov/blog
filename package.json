@@ -8,7 +8,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "predeploy": "npm run build",
+    "predeploy": "npm run build && echo abelozerov.com > out/CNAME",
     "deploy": "gh-pages -d out",
     "start": "next start",
     "lint": "next lint"
