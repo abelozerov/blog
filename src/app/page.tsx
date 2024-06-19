@@ -14,6 +14,9 @@ import {
   VStack,
   useColorMode,
   useColorModeValue,
+  Divider,
+  HStack,
+  chakra,
 } from "@chakra-ui/react";
 import { FaLinkedin, FaTwitter, FaGithub } from "react-icons/fa";
 import { SunIcon, MoonIcon } from "@chakra-ui/icons";
@@ -23,6 +26,7 @@ export default function Home() {
   const bgColor = useColorModeValue("gray.50", "gray.900");
   const textColor = useColorModeValue("gray.800", "white");
   const cardBgColor = useColorModeValue("white", "gray.800");
+  const cardTextColor = useColorModeValue("gray.800", "white");
 
   return (
     <Box bg={bgColor} color={textColor} minH="100vh" py={10}>
@@ -34,22 +38,12 @@ export default function Home() {
             onClick={toggleColorMode}
           />
         </Flex>
-        <Flex direction={{ base: "column", md: "row" }} align="center" mb={10}>
-          <Image
-            src="/profile.jpg"
-            alt="Alexey Belozerov"
-            borderRadius="md"
-            objectFit="cover"
-            w={{ base: "100%", md: "300px" }}
-            h={{ base: "auto", md: "300px" }}
-            mr={{ base: 0, md: 10 }}
-            mb={{ base: 4, md: 0 }}
-          />
-          <VStack spacing={8} textAlign={{ base: "center", md: "left" }}>
-            <Heading as="h1" size="2xl">
+        <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10}>
+          <VStack spacing={4} align={{ base: "center", md: "flex-start" }}>
+            <Heading as="h1" size="2xl" mb={2}>
               Alexey Belozerov
             </Heading>
-            <Text fontSize="xl" fontWeight="bold">
+            <Text fontSize="xl" fontWeight="bold" mb={2}>
               Senior Product Engineer
             </Text>
             <Text fontSize="md" lineHeight="tall">
@@ -57,20 +51,51 @@ export default function Home() {
               <br/><br/>
               Currently, I serve as a Senior Product Engineer at Pumas-AI, Inc., leading remote teams to build modern frontends. I co-founded WellDoneCode and created the popular browser extension PerfectPixel, which helps web developers achieve pixel-perfect designs.
             </Text>
+            <HStack spacing={4}>
+              <Link href="https://www.linkedin.com/in/alexey-belozerov-660a252b/" isExternal>
+                <IconButton
+                  aria-label="LinkedIn"
+                  icon={<FaLinkedin />}
+                  size="lg"
+                  variant="ghost"
+                />
+              </Link>
+              <Link href="https://x.com/abelozerov" isExternal>
+                <IconButton aria-label="Twitter" icon={<FaTwitter />} size="lg" variant="ghost" />
+              </Link>
+              <Link href="https://github.com/abelozerov" isExternal>
+                <IconButton aria-label="GitHub" icon={<FaGithub />} size="lg" variant="ghost" />
+              </Link>
+            </HStack>
           </VStack>
-        </Flex>
+          <Box>
+            <Image
+              src="/profile.jpg"
+              alt="Alexey Belozerov"
+              borderRadius="md"
+              objectFit="cover"
+              w="100%"
+              maxW="400px"
+              mx="auto"
+              boxShadow="lg"
+            />
+          </Box>
+        </SimpleGrid>
 
-        <Box w="full" textAlign="left" mt={10}>
+        <Divider my={10} />
+
+        <Box textAlign="left">
           <Heading as="h2" size="lg" mb={4}>
             Projects
           </Heading>
-          <SimpleGrid columns={[1, null, 2]} spacing={10}>
+          <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10}>
             <Box
               p={5}
               shadow="md"
               borderWidth="1px"
               borderRadius="md"
               bg={cardBgColor}
+              color={cardTextColor}
             >
               <Flex align="center">
                 <Image src="/perfectpixel-logo.png" boxSize="50px" mr={4} />
@@ -115,19 +140,28 @@ export default function Home() {
           </SimpleGrid>
         </Box>
 
-        <Box w="full" textAlign="left" mt={10}>
+        <Divider my={10} />
+
+        <Box textAlign="left">
           <Heading as="h2" size="lg" mb={4}>
             Articles
           </Heading>
-          <VStack spacing={4}>
-            <Box p={5} shadow="md" borderWidth="1px" borderRadius="md" bg={cardBgColor} w="full">
+          <SimpleGrid columns={[1, null, 2]} spacing={10}>
+            <Box
+              p={5}
+              shadow="md"
+              borderWidth="1px"
+              borderRadius="md"
+              bg={cardBgColor}
+              color={cardTextColor}
+            >
               <Flex align="center">
                 <Image src="/large-files-transfers.jpeg" boxSize="50px" mr={4} />
-                <Heading as="h3" size="md">
-                  <Link href="https://hackernoon.com/large-files-transfers-between-parts-of-chrome-extensions-for-manifest-v3" isExternal>
+                <Link href="https://hackernoon.com/large-files-transfers-between-parts-of-chrome-extensions-for-manifest-v3" isExternal>
+                  <Heading as="h3" size="md" _hover={{ textDecoration: "underline" }}>
                     Large Files Transfers Between Parts of Chrome Extensions for Manifest V3
-                  </Link>
-                </Heading>
+                  </Heading>
+                </Link>
               </Flex>
               <Text mt={2}>
                 A detailed guide on managing large file transfers in Chrome extensions, addressing the 'message length exceeded maximum allowed length' issue.
@@ -136,14 +170,21 @@ export default function Home() {
                 Published on June 7, 2024
               </Text>
             </Box>
-            <Box p={5} shadow="md" borderWidth="1px" borderRadius="md" bg={cardBgColor} w="full">
+            <Box
+              p={5}
+              shadow="md"
+              borderWidth="1px"
+              borderRadius="md"
+              bg={cardBgColor}
+              color={cardTextColor}
+            >
               <Flex align="center">
                 <Image src="/react-file-structure.jpeg" boxSize="50px" mr={4} />
-                <Heading as="h3" size="md">
-                  <Link href="https://hackernoon.com/developing-an-easy-to-use-file-structure-for-an-extensive-react-frontend-application" isExternal>
+                <Link href="https://hackernoon.com/developing-an-easy-to-use-file-structure-for-an-extensive-react-frontend-application" isExternal>
+                  <Heading as="h3" size="md" _hover={{ textDecoration: "underline" }}>
                     Developing an Easy-to-Use File Structure for an Extensive React Frontend Application
-                  </Link>
-                </Heading>
+                  </Heading>
+                </Link>
               </Flex>
               <Text mt={2}>
                 A practical approach to organizing file structures in large React applications for better maintainability and scalability.
@@ -153,51 +194,32 @@ export default function Home() {
               </Text>
             </Box>
             {/* Add more articles as needed */}
-          </VStack>
+          </SimpleGrid>
         </Box>
 
-        <Box w="full" textAlign="left" mt={10}>
+        <Divider my={10} />
+
+        <Box textAlign="left">
           <Heading as="h2" size="lg" mb={4}>
             Academic Articles
           </Heading>
           <VStack spacing={4}>
-            <Box p={5} shadow="md" borderWidth="1px" borderRadius="md" bg={cardBgColor} w="full">
+            <Box
+              p={5}
+              shadow="md"
+              borderWidth="1px"
+              borderRadius="md"
+              bg={cardBgColor}
+              color={cardTextColor}
+              w="full"
+            >
               <Heading as="h3" size="md">
-                Academic Article 1
+                Modern ways for optimizing web page loading: from HTTP/2 to HTTP/3
               </Heading>
-              <Text mt={2}>Description of academic article 1.</Text>
-            </Box>
-            <Box p={5} shadow="md" borderWidth="1px" borderRadius="md" bg={cardBgColor} w="full">
-              <Heading as="h3" size="md">
-                Academic Article 2
-              </Heading>
-              <Text mt={2}>Description of academic article 2.</Text>
+              <Text mt={2}>Paper Id: IJ-1906240236</Text>
             </Box>
             {/* Add more academic articles as needed */}
           </VStack>
-        </Box>
-
-        <Box w="full" textAlign="left" mt={10}>
-          <Heading as="h2" size="lg" mb={4}>
-            Connect with Me
-          </Heading>
-          <Stack direction="row" spacing={6} justify="center">
-            <Link href="https://www.linkedin.com/in/alexey-belozerov-660a252b/" isExternal>
-              <IconButton
-                aria-label="LinkedIn"
-                icon={<FaLinkedin />}
-                size="lg"
-                variant="ghost"
-              />
-            </Link>
-            <Link href="https://x.com/abelozerov" isExternal>
-              <IconButton aria-label="Twitter" icon={<FaTwitter />} size="lg" variant="ghost" />
-            </Link>
-            <Link href="https://github.com/abelozerov" isExternal>
-              <IconButton aria-label="GitHub" icon={<FaGithub />} size="lg" variant="ghost" />
-            </Link>
-            {/* Add more social links as needed */}
-          </Stack>
         </Box>
       </Container>
     </Box>
