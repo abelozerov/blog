@@ -9,7 +9,6 @@ import {
   Image,
   Link,
   SimpleGrid,
-  Stack,
   Text,
   VStack,
   useColorMode,
@@ -30,67 +29,70 @@ export default function Home() {
 
   return (
     <Box bg={bgColor} color={textColor} minH="100vh" py={10}>
-      <Container maxW="container.lg">
-        <Flex justify="flex-end" mb={4}>
-          <IconButton
-            aria-label="Toggle dark mode"
-            icon={colorMode === "light" ? <MoonIcon /> : <SunIcon />}
-            onClick={toggleColorMode}
-            variant="ghost"
-          />
-        </Flex>
-        <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10}>
-          <VStack spacing={4} align={{ base: "center", md: "flex-start" }}>
-            <Heading as="h1" size="2xl" mb={2}>
-              Alexey Belozerov
-            </Heading>
-            <Text fontSize="xl" fontWeight="bold" mb={2}>
-              Senior Product Engineer
-            </Text>
-            <Text fontSize="md" lineHeight="tall">
-              Hello! I&apos;m Alexey Belozerov, a Senior Product Engineer and digital nomad. I specialize in developing web applications using technologies like Next.js, React.js, TypeScript, and Chrome Extensions.
-              <br/><br/>
-              Currently, I serve as a Senior Product Engineer at Pumas-AI, Inc., leading remote teams to build modern frontends. I co-founded WellDoneCode and created the popular browser extension PerfectPixel, which helps web developers achieve pixel-perfect designs.
-            </Text>
-            <HStack spacing={4}>
-              <Link href="https://www.linkedin.com/in/alexey-belozerov-660a252b/" isExternal>
-                <IconButton
-                  aria-label="LinkedIn"
-                  icon={<FaLinkedin />}
-                  size="lg"
-                  variant="ghost"
-                />
-              </Link>
-              <Link href="https://x.com/abelozerov" isExternal>
-                <IconButton aria-label="Twitter" icon={<FaTwitter />} size="lg" variant="ghost" />
-              </Link>
-              <Link href="https://github.com/abelozerov" isExternal>
-                <IconButton aria-label="GitHub" icon={<FaGithub />} size="lg" variant="ghost" />
-              </Link>
-              <Link href="https://www.indiehackers.com/abelozerov" isExternal>
-                <IconButton
-                  aria-label="Indie Hackers"
-                  icon={<Image src="/indie-hackers-icon.svg" alt="Indie Hackers Icon" boxSize="20px" filter={indieHackersFilter} />}
-                  size="lg"
-                  variant="ghost"
-                />
-              </Link>
-            </HStack>
-          </VStack>
-          <Box>
-            <Image
-              src="/profile.jpg"
-              alt="Alexey Belozerov"
-              borderRadius="md"
-              objectFit="cover"
-              w="100%"
-              maxW="400px"
-              mx="auto"
-              boxShadow="lg"
-              border="none"
-            />
-          </Box>
-        </SimpleGrid>
+      <Container maxW="container.lg" py={10}>
+        <Box position="relative">
+          <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10}>
+            <VStack spacing={4} align={{ base: "center", md: "flex-start" }}>
+              <Heading as="h1" size="2xl" mb={2}>
+                Alexey Belozerov
+              </Heading>
+              <Text fontSize="xl" fontWeight="bold" mb={2}>
+                Software Engineer
+              </Text>
+              <Text fontSize="md" lineHeight="tall">
+                Hello! I&apos;m Alexey Belozerov, a Software Engineer and digital nomad. I specialize in developing web applications using technologies like Next.js, React.js, TypeScript, and Chrome Extensions.
+                <br/><br/>
+                Currently, I serve as a Senior Product Engineer at Pumas-AI, Inc., leading remote teams to build modern frontends. I co-founded WellDoneCode and created the popular browser extension PerfectPixel, which helps web developers achieve pixel-perfect designs.
+              </Text>
+              <HStack spacing={4}>
+                <Link href="https://www.linkedin.com/in/alexey-belozerov-660a252b/" isExternal>
+                  <IconButton
+                    aria-label="LinkedIn"
+                    icon={<FaLinkedin />}
+                    size="lg"
+                    variant="ghost"
+                  />
+                </Link>
+                <Link href="https://x.com/abelozerov" isExternal>
+                  <IconButton aria-label="Twitter" icon={<FaTwitter />} size="lg" variant="ghost" />
+                </Link>
+                <Link href="https://github.com/abelozerov" isExternal>
+                  <IconButton aria-label="GitHub" icon={<FaGithub />} size="lg" variant="ghost" />
+                </Link>
+                <Link href="https://www.indiehackers.com/abelozerov" isExternal>
+                  <IconButton
+                    aria-label="Indie Hackers"
+                    icon={<Image src="/indie-hackers-icon.svg" alt="Indie Hackers Icon" boxSize="20px" filter={indieHackersFilter} />}
+                    size="lg"
+                    variant="ghost"
+                  />
+                </Link>
+              </HStack>
+            </VStack>
+            <Box position="relative">
+              <Image
+                src="/profile.jpg"
+                alt="Alexey Belozerov"
+                borderRadius="md"
+                objectFit="cover"
+                w="100%"
+                maxW="400px"
+                mx="auto"
+                boxShadow="lg"
+                border="none"
+              />
+              <IconButton
+                aria-label="Toggle dark mode"
+                icon={colorMode === "light" ? <MoonIcon /> : <SunIcon />}
+                onClick={toggleColorMode}
+                variant="ghost"
+                position="absolute"
+                top="10px"
+                left="110%"
+              />
+            </Box>
+          </SimpleGrid>
+        </Box>
 
         <Divider my={10} />
 
