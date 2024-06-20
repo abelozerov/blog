@@ -16,7 +16,6 @@ import {
   useColorModeValue,
   Divider,
   HStack,
-  chakra,
 } from "@chakra-ui/react";
 import { FaLinkedin, FaTwitter, FaGithub } from "react-icons/fa";
 import { SunIcon, MoonIcon } from "@chakra-ui/icons";
@@ -27,6 +26,7 @@ export default function Home() {
   const textColor = useColorModeValue("gray.800", "white");
   const cardBgColor = useColorModeValue("white", "gray.800");
   const cardTextColor = useColorModeValue("gray.800", "white");
+  const indieHackersFilter = useColorModeValue("invert(100%)", "invert(0%)");
 
   return (
     <Box bg={bgColor} color={textColor} minH="100vh" py={10}>
@@ -36,6 +36,7 @@ export default function Home() {
             aria-label="Toggle dark mode"
             icon={colorMode === "light" ? <MoonIcon /> : <SunIcon />}
             onClick={toggleColorMode}
+            variant="ghost"
           />
         </Flex>
         <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10}>
@@ -66,6 +67,14 @@ export default function Home() {
               <Link href="https://github.com/abelozerov" isExternal>
                 <IconButton aria-label="GitHub" icon={<FaGithub />} size="lg" variant="ghost" />
               </Link>
+              <Link href="https://www.indiehackers.com/abelozerov" isExternal>
+                <IconButton
+                  aria-label="Indie Hackers"
+                  icon={<Image src="/indie-hackers-icon.svg" alt="Indie Hackers Icon" boxSize="20px" filter={indieHackersFilter} />}
+                  size="lg"
+                  variant="ghost"
+                />
+              </Link>
             </HStack>
           </VStack>
           <Box>
@@ -78,6 +87,7 @@ export default function Home() {
               maxW="400px"
               mx="auto"
               boxShadow="lg"
+              border="none"
             />
           </Box>
         </SimpleGrid>
@@ -96,6 +106,7 @@ export default function Home() {
               borderRadius="md"
               bg={cardBgColor}
               color={cardTextColor}
+              border="none"
             >
               <Flex align="center">
                 <Image src="/perfectpixel-logo.png" alt="PerfectPixel Logo" boxSize="50px" mr={4} />
@@ -154,6 +165,7 @@ export default function Home() {
               borderRadius="md"
               bg={cardBgColor}
               color={cardTextColor}
+              border="none"
             >
               <Flex align="center">
                 <Image src="/large-files-transfers.jpeg" alt="Large Files Transfers" boxSize="50px" mr={4} />
@@ -167,7 +179,7 @@ export default function Home() {
                 A detailed guide on managing large file transfers in Chrome extensions, addressing the &apos;message length exceeded maximum allowed length&apos; issue.
               </Text>
               <Text mt={1} color="gray.500" fontSize="sm">
-                Published on June 7, 2024
+                Published on HackerNoon, June 7, 2024
               </Text>
             </Box>
             <Box
@@ -177,6 +189,7 @@ export default function Home() {
               borderRadius="md"
               bg={cardBgColor}
               color={cardTextColor}
+              border="none"
             >
               <Flex align="center">
                 <Image src="/react-file-structure.jpeg" alt="React File Structure" boxSize="50px" mr={4} />
@@ -190,7 +203,7 @@ export default function Home() {
                 A practical approach to organizing file structures in large React applications for better maintainability and scalability.
               </Text>
               <Text mt={1} color="gray.500" fontSize="sm">
-                Published on September 18, 2023
+                Published on HackerNoon, September 18, 2023
               </Text>
             </Box>
             {/* Add more articles as needed */}
@@ -211,6 +224,7 @@ export default function Home() {
               borderRadius="md"
               bg={cardBgColor}
               color={cardTextColor}
+              border="none"
               w="full"
             >
               <Heading as="h3" size="md">
