@@ -9,7 +9,7 @@
     "dev": "next dev",
     "build": "next build",
     "predeploy": "npm run build && echo abelozerov.com > out/CNAME",
-    "deploy": "gh-pages -d out -t true",
+    "deploy": "gh-pages -d out -t",
     "start": "next start",
     "lint": "eslint"
   },
