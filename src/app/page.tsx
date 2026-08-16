@@ -211,31 +211,6 @@ export default function Home() {
             {/* Add more articles as needed */}
           </SimpleGrid>
         </Box>
-
-        <Divider my={10} />
-
-        <Box textAlign="left">
-          <Heading as="h2" size="lg" mb={4}>
-            Academic Articles
-          </Heading>
-          <VStack spacing={4}>
-            <Box
-              p={5}
-              shadow="md"
-              borderWidth="1px"
-              borderRadius="md"
-              bg={cardBgColor}
-              color={cardTextColor}
-              border="none"
-              w="full"
-            >
-              <Heading as="h3" size="md">
-                Modern ways for optimizing web page loading: from HTTP/2 to HTTP/3
-              </Heading>
-              <Text mt={2}>Paper Id: IJ-1906240236</Text>
-            </Box>
-          </VStack>
-        </Box>
       </Container>
     </Box>
   );
