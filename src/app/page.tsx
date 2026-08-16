@@ -2,38 +2,40 @@
 
 import {
   Box,
+  ClientOnly,
   Container,
   Flex,
   Heading,
+  HStack,
   IconButton,
   Image,
   Link,
+  Separator,
   SimpleGrid,
+  Skeleton,
   Text,
   VStack,
-  useColorMode,
-  useColorModeValue,
-  Divider,
-  HStack,
 } from "@chakra-ui/react";
 import { FaLinkedin, FaTwitter, FaGithub } from "react-icons/fa";
-import { SunIcon, MoonIcon } from "@chakra-ui/icons";
+import { LuMoon, LuSun } from "react-icons/lu";
+import { useColorMode } from "../components/ui/color-mode";
+
+const bgColor = { base: "gray.50", _dark: "gray.900" };
+const textColor = { base: "gray.800", _dark: "white" };
+const cardBgColor = { base: "white", _dark: "gray.800" };
+const cardTextColor = { base: "gray.800", _dark: "white" };
+const indieHackersFilter = { base: "invert(100%)", _dark: "invert(0%)" };
 
 export default function Home() {
   const { colorMode, toggleColorMode } = useColorMode();
-  const bgColor = useColorModeValue("gray.50", "gray.900");
-  const textColor = useColorModeValue("gray.800", "white");
-  const cardBgColor = useColorModeValue("white", "gray.800");
-  const cardTextColor = useColorModeValue("gray.800", "white");
-  const indieHackersFilter = useColorModeValue("invert(100%)", "invert(0%)");
 
   return (
     <Box bg={bgColor} color={textColor} minH="100vh" py={10}>
-      <Container maxW="container.lg" py={10}>
+      <Container maxW="5xl" py={10}>
         <Box position="relative">
-          <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10}>
-            <VStack spacing={4} align={{ base: "center", md: "flex-start" }}>
-              <Heading as="h1" size="2xl" mb={2}>
+          <SimpleGrid columns={{ base: 1, md: 2 }} gap={10}>
+            <VStack gap={4} align={{ base: "center", md: "flex-start" }}>
+              <Heading as="h1" size={{ base: "4xl", md: "5xl" }} mb={2}>
                 Alexey Belozerov
               </Heading>
               <Text fontSize="xl" fontWeight="bold" mb={2}>
@@ -44,29 +46,40 @@ export default function Home() {
                 <br/><br/>
                 Currently, I serve as a Senior Product Engineer at Pumas-AI, Inc., leading remote teams to build modern frontends. I co-founded WellDoneCode and created the popular browser extension PerfectPixel, which helps web developers achieve pixel-perfect designs.
               </Text>
-              <HStack spacing={4}>
-                <Link href="https://www.linkedin.com/in/alexey-belozerov-660a252b/" isExternal>
-                  <IconButton
-                    aria-label="LinkedIn"
-                    icon={<FaLinkedin />}
-                    size="lg"
-                    variant="ghost"
-                  />
-                </Link>
-                <Link href="https://x.com/abelozerov" isExternal>
-                  <IconButton aria-label="Twitter" icon={<FaTwitter />} size="lg" variant="ghost" />
-                </Link>
-                <Link href="https://github.com/abelozerov" isExternal>
-                  <IconButton aria-label="GitHub" icon={<FaGithub />} size="lg" variant="ghost" />
-                </Link>
-                <Link href="https://www.indiehackers.com/abelozerov" isExternal>
-                  <IconButton
-                    aria-label="Indie Hackers"
-                    icon={<Image src="/indie-hackers-icon.svg" alt="Indie Hackers Icon" boxSize="20px" filter={indieHackersFilter} />}
-                    size="lg"
-                    variant="ghost"
-                  />
-                </Link>
+              <HStack gap={4}>
+                <IconButton asChild aria-label="LinkedIn" size="lg" variant="ghost">
+                  <a
+                    href="https://www.linkedin.com/in/alexey-belozerov-660a252b/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <FaLinkedin />
+                  </a>
+                </IconButton>
+                <IconButton asChild aria-label="Twitter" size="lg" variant="ghost">
+                  <a href="https://x.com/abelozerov" target="_blank" rel="noopener noreferrer">
+                    <FaTwitter />
+                  </a>
+                </IconButton>
+                <IconButton asChild aria-label="GitHub" size="lg" variant="ghost">
+                  <a href="https://github.com/abelozerov" target="_blank" rel="noopener noreferrer">
+                    <FaGithub />
+                  </a>
+                </IconButton>
+                <IconButton asChild aria-label="Indie Hackers" size="lg" variant="ghost">
+                  <a
+                    href="https://www.indiehackers.com/abelozerov"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Image
+                      src="/indie-hackers-icon.svg"
+                      alt="Indie Hackers Icon"
+                      boxSize="20px"
+                      filter={indieHackersFilter}
+                    />
+                  </a>
+                </IconButton>
               </HStack>
             </VStack>
             <Box position="relative">
@@ -81,26 +94,33 @@ export default function Home() {
                 boxShadow="lg"
                 border="none"
               />
-              <IconButton
-                aria-label="Toggle dark mode"
-                icon={colorMode === "light" ? <MoonIcon /> : <SunIcon />}
-                onClick={toggleColorMode}
-                variant="ghost"
-                position="absolute"
-                top="10px"
-                left="110%"
-              />
+              <ClientOnly
+                fallback={
+                  <Skeleton boxSize="10" rounded="md" position="absolute" top="10px" left="110%" />
+                }
+              >
+                <IconButton
+                  aria-label="Toggle dark mode"
+                  onClick={toggleColorMode}
+                  variant="ghost"
+                  position="absolute"
+                  top="10px"
+                  left="110%"
+                >
+                  {colorMode === "light" ? <LuMoon /> : <LuSun />}
+                </IconButton>
+              </ClientOnly>
             </Box>
           </SimpleGrid>
         </Box>
 
-        <Divider my={10} />
+        <Separator my={10} />
 
         <Box textAlign="left">
-          <Heading as="h2" size="lg" mb={4}>
+          <Heading as="h2" size={{ base: "2xl", md: "3xl" }} mb={4}>
             Projects
           </Heading>
-          <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10}>
+          <SimpleGrid columns={{ base: 1, md: 2 }} gap={10}>
             <Box
               p={5}
               shadow="md"
@@ -112,8 +132,12 @@ export default function Home() {
             >
               <Flex align="center">
                 <Image src="/perfectpixel-logo.png" alt="PerfectPixel Logo" boxSize="50px" mr={4} />
-                <Link href="https://www.welldonecode.com/perfectpixel/" isExternal>
-                  <Heading as="h3" size="md" _hover={{ textDecoration: "underline" }}>
+                <Link
+                  href="https://www.welldonecode.com/perfectpixel/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Heading as="h3" size="xl" _hover={{ textDecoration: "underline" }}>
                     PerfectPixel
                   </Heading>
                 </Link>
@@ -133,7 +157,8 @@ export default function Home() {
                 <Link
                   href="https://www.welldonecode.com/perfectpixel/"
                   color="teal.500"
-                  isExternal
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   Learn More
                 </Link>
@@ -142,7 +167,8 @@ export default function Home() {
                   <Link
                     href="https://chromewebstore.google.com/detail/perfectpixel-by-welldonec/dkaagdgjmgdmbnecmcefdhjekcoceebi"
                     color="teal.500"
-                    isExternal
+                    target="_blank"
+                    rel="noopener noreferrer"
                   >
                     Chrome Web Store
                   </Link>
@@ -153,13 +179,13 @@ export default function Home() {
           </SimpleGrid>
         </Box>
 
-        <Divider my={10} />
+        <Separator my={10} />
 
         <Box textAlign="left">
-          <Heading as="h2" size="lg" mb={4}>
+          <Heading as="h2" size={{ base: "2xl", md: "3xl" }} mb={4}>
             Articles
           </Heading>
-          <SimpleGrid columns={[1, null, 2]} spacing={10}>
+          <SimpleGrid columns={{ base: 1, md: 2 }} gap={10}>
             <Box
               p={5}
               shadow="md"
@@ -171,8 +197,12 @@ export default function Home() {
             >
               <Flex align="center">
                 <Image src="/large-files-transfers.jpeg" alt="Large Files Transfers" boxSize="50px" mr={4} />
-                <Link href="https://hackernoon.com/large-files-transfers-between-parts-of-chrome-extensions-for-manifest-v3" isExternal>
-                  <Heading as="h3" size="md" _hover={{ textDecoration: "underline" }}>
+                <Link
+                  href="https://hackernoon.com/large-files-transfers-between-parts-of-chrome-extensions-for-manifest-v3"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Heading as="h3" size="xl" _hover={{ textDecoration: "underline" }}>
                     Large Files Transfers Between Parts of Chrome Extensions for Manifest V3
                   </Heading>
                 </Link>
@@ -195,8 +225,12 @@ export default function Home() {
             >
               <Flex align="center">
                 <Image src="/react-file-structure.jpeg" alt="React File Structure" boxSize="50px" mr={4} />
-                <Link href="https://hackernoon.com/developing-an-easy-to-use-file-structure-for-an-extensive-react-frontend-application" isExternal>
-                  <Heading as="h3" size="md" _hover={{ textDecoration: "underline" }}>
+                <Link
+                  href="https://hackernoon.com/developing-an-easy-to-use-file-structure-for-an-extensive-react-frontend-application"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Heading as="h3" size="xl" _hover={{ textDecoration: "underline" }}>
                     Developing an Easy-to-Use File Structure for an Extensive React Frontend Application
                   </Heading>
                 </Link>
