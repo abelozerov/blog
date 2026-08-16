@@ -1,10 +1,28 @@
 // app/layout.tsx
-'use client';
-
-import { ChakraProvider } from "@chakra-ui/react";
+import type { Metadata, Viewport } from "next";
 import { ReactNode } from "react";
-import theme from "../theme";
-import { ColorModeScript } from "@chakra-ui/react";
+import Providers from "./providers";
+
+export const metadata: Metadata = {
+  title: "Alexey Belozerov - Software Engineer",
+  description:
+    "Alexey Belozerov is a Software Engineer specializing in web applications using Next.js, React.js, TypeScript, and Chrome Extensions.",
+  keywords: [
+    "Alexey Belozerov",
+    "Software Engineer",
+    "Next.js",
+    "React.js",
+    "TypeScript",
+    "Chrome Extensions",
+    "Web Development",
+  ],
+  authors: [{ name: "Alexey Belozerov" }],
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+};
 
 interface RootLayoutProps {
   children: ReactNode;
@@ -12,21 +30,9 @@ interface RootLayoutProps {
 
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
-    <html lang="en">
-      <head>
-        <meta charSet="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="description" content="Alexey Belozerov is a Software Engineer specializing in web applications using Next.js, React.js, TypeScript, and Chrome Extensions." />
-        <meta name="keywords" content="Alexey Belozerov, Software Engineer, Next.js, React.js, TypeScript, Chrome Extensions, Web Development" />
-        <meta name="author" content="Alexey Belozerov" />
-        <link rel="icon" href="/favicon.ico" />
-        <title>Alexey Belozerov - Software Engineer</title>
-        <ColorModeScript initialColorMode={theme.config.initialColorMode} />
-      </head>
+    <html lang="en" suppressHydrationWarning>
       <body>
-        <ChakraProvider theme={theme}>
-          {children}
-        </ChakraProvider>
+        <Providers>{children}</Providers>
       </body>
     </html>
   );

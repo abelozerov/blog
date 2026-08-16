@@ -1,8 +1,8 @@
 // theme.ts
-import { extendTheme } from "@chakra-ui/react";
+import { createSystem, defaultConfig } from "@chakra-ui/react";
 
-const theme = extendTheme({
+const system = createSystem(defaultConfig, {
   // Customize your theme here
 });
 
-export default theme;
+export default system;
