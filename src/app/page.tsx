@@ -196,6 +196,34 @@ export default function Home() {
               border="none"
             >
               <Flex align="center">
+                <Image src="/ab-tests-chrome-extension.jpeg" alt="A/B Tests in a Chrome Extension" boxSize="50px" mr={4} />
+                <Link
+                  href="https://hackernoon.com/how-i-run-ab-tests-in-a-chrome-extension-without-re-releasing-to-the-store"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Heading as="h3" size="xl" _hover={{ textDecoration: "underline" }}>
+                    How I Run A/B Tests in a Chrome Extension (Without Re-Releasing to the Store)
+                  </Heading>
+                </Link>
+              </Flex>
+              <Text mt={2}>
+                A/B testing for Chrome extensions without store re-releases: remote config, kill switches, variant pinning, GA4 tracking, and an open-source MV3 library.
+              </Text>
+              <Text mt={1} color="gray.500" fontSize="sm">
+                Published on HackerNoon, August 16, 2026
+              </Text>
+            </Box>
+            <Box
+              p={5}
+              shadow="md"
+              borderWidth="1px"
+              borderRadius="md"
+              bg={cardBgColor}
+              color={cardTextColor}
+              border="none"
+            >
+              <Flex align="center">
                 <Image src="/large-files-transfers.jpeg" alt="Large Files Transfers" boxSize="50px" mr={4} />
                 <Link
                   href="https://hackernoon.com/large-files-transfers-between-parts-of-chrome-extensions-for-manifest-v3"
