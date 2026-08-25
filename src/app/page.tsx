@@ -153,7 +153,7 @@ export default function Home() {
               <Text mt={2} color="gray.500">
                 350,000+ monthly users
               </Text>
-              <Flex mt={2} justify="space-between" align="center">
+              <Flex mt={2} justify="space-between" align="center" wrap="wrap" gap={2}>
                 <Link
                   href="https://www.welldonecode.com/perfectpixel/"
                   color="teal.500"
@@ -162,16 +162,29 @@ export default function Home() {
                 >
                   Learn More
                 </Link>
-                <Flex align="center">
-                  <Image src="/chrome-web-store-logo.svg" alt="Chrome Web Store Logo" boxSize="24px" mr={2} />
-                  <Link
-                    href="https://chromewebstore.google.com/detail/perfectpixel-by-welldonec/dkaagdgjmgdmbnecmcefdhjekcoceebi"
-                    color="teal.500"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Chrome Web Store
-                  </Link>
+                <Flex align="center" wrap="wrap" gap={4}>
+                  <Flex align="center">
+                    <Image src="/chrome-web-store-logo.svg" alt="Chrome Web Store Logo" boxSize="24px" mr={2} />
+                    <Link
+                      href="https://chromewebstore.google.com/detail/perfectpixel-by-welldonec/dkaagdgjmgdmbnecmcefdhjekcoceebi"
+                      color="teal.500"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Chrome Web Store
+                    </Link>
+                  </Flex>
+                  <Flex align="center">
+                    <Image src="/edge-addons-logo.svg" alt="Microsoft Edge Add-ons Logo" boxSize="24px" mr={2} />
+                    <Link
+                      href="https://microsoftedge.microsoft.com/addons/detail/oolfkllppnieaaddmlfgljpboeagcobk"
+                      color="teal.500"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Edge Add-ons
+                    </Link>
+                  </Flex>
                 </Flex>
               </Flex>
             </Box>
