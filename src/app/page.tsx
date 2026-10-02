@@ -105,10 +105,10 @@ const formatDate = (iso: string) =>
 
 const external = { target: "_blank", rel: "noopener noreferrer" };
 
-// Body text width: keeps lines under ~80 characters.
-const measure = "34rem";
-
 const perfectPixelUrl = "https://www.welldonecode.com/perfectpixel/";
+
+// Running text width: keeps lines under ~80 characters.
+const measure = "34rem";
 
 function Section({ id, title, children }: { id: string; title: string; children: ReactNode }) {
   return (
@@ -187,11 +187,11 @@ export default function Home() {
                 harnesses, and skills.
               </Text>
               <Text>
-                I&apos;m a Senior Product Engineer at Pumas-AI, Inc., where I lead the remote team
-                behind one of the company&apos;s products, owning its roadmap and releases and working
-                with client-facing scientists to understand what users need. I co-founded
-                WellDoneCode and created the popular browser extension PerfectPixel, which helps web
-                developers achieve pixel-perfect designs.
+                I&apos;m a Senior Product Engineer at Pumas-AI, where I lead the remote team behind
+                one of the company&apos;s products, owning its roadmap and releases and working with
+                client-facing scientists to understand what users need. I co-founded WellDoneCode
+                and created the popular browser extension PerfectPixel, which helps web developers
+                achieve pixel-perfect designs.
               </Text>
             </Stack>
 
@@ -341,56 +341,51 @@ export default function Home() {
         </Section>
 
         <Section id="articles" title="Articles">
-          <Box as="ul" listStyle="none">
+          {/* A stacked list on small screens; side-by-side columns across the full width on desktop */}
+          <Grid
+            as="ul"
+            listStyle="none"
+            templateColumns={{ base: "1fr", lg: "repeat(3, minmax(0, 1fr))" }}
+            columnGap="10"
+          >
             {articles.map((article) => (
               <LinkBox
                 as="li"
                 key={article.href}
-                display="grid"
-                gridTemplateColumns={{ base: "1fr", md: "9rem minmax(0, 1fr)" }}
-                columnGap="8"
-                rowGap="2"
-                py={{ base: "5", md: "6" }}
-                borderTopWidth="1px"
+                py={{ base: "5", lg: "0" }}
                 borderColor="site.rule"
                 css={{
-                  "&:last-of-type": { borderBottomWidth: "1px" },
+                  "&:first-of-type": { pt: "0" },
+                  "&:not(:first-of-type)": { borderTopWidth: { base: "1px", lg: "0" } },
                   "&:hover [data-title]": { color: "site.accent" },
                 }}
               >
-                <Flex
-                  {...caption}
-                  direction={{ base: "row", md: "column" }}
-                  columnGap="3"
-                  rowGap="1"
-                  pt={{ md: "1" }}
-                >
+                <Flex {...caption} columnGap="3" wrap="wrap">
                   <time dateTime={article.date}>{formatDate(article.date)}</time>
                   <span>{article.publisher}</span>
                 </Flex>
-                <Box>
-                  <Heading
-                    as="h3"
-                    data-title=""
-                    maxW="36rem"
-                    fontWeight="650"
-                    fontSize={{ base: "lg", md: "xl" }}
-                    lineHeight="1.3"
-                    letterSpacing="-0.005em"
-                    transition="color 0.15s"
-                    textWrap="balance"
-                  >
-                    <LinkOverlay href={article.href} {...external}>
-                      {article.title}
-                    </LinkOverlay>
-                  </Heading>
-                  <Text mt="2" maxW={measure} color="site.muted" lineHeight="1.6">
-                    {article.summary}
-                  </Text>
-                </Box>
+                <Heading
+                  as="h3"
+                  data-title=""
+                  mt="2"
+                  maxW={measure}
+                  fontWeight="650"
+                  fontSize={{ base: "lg", md: "xl" }}
+                  lineHeight="1.3"
+                  letterSpacing="-0.005em"
+                  transition="color 0.15s"
+                  textWrap="balance"
+                >
+                  <LinkOverlay href={article.href} {...external}>
+                    {article.title}
+                  </LinkOverlay>
+                </Heading>
+                <Text mt="2" maxW={measure} color="site.muted" lineHeight="1.6">
+                  {article.summary}
+                </Text>
               </LinkBox>
             ))}
-          </Box>
+          </Grid>
         </Section>
       </main>
 
