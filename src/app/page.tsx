@@ -258,7 +258,7 @@ export default function Home() {
                       </Link>
                     </Heading>
                     <Text {...caption} mt="1">
-                      Creator and co-owner
+                      Creator and lead developer
                     </Text>
                   </Box>
                 </Flex>
