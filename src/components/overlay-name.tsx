@@ -13,6 +13,7 @@ import { caption } from "./caption";
 // JS, before hydration, and with reduced motion the name renders aligned.
 const START = { x: 18, y: -12 };
 const MAX_DRIFT = 14;
+const OVERLAY_OPACITY = 0.5;
 
 const animatedStart = "@media (scripting: enabled) and (prefers-reduced-motion: no-preference)";
 
@@ -41,7 +42,12 @@ export function OverlayName({ lines }: { lines: string[] }) {
     if (!root) return;
 
     const motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const current = motionQuery.matches ? { x: 0, y: 0 } : { ...START };
+    // Start from wherever CSS actually painted the overlay. Browsers without the
+    // `scripting` media query never applied START, so animating from it would
+    // knock an aligned name out of place at hydration.
+    const paintedAtStart =
+      getComputedStyle(root).getPropertyValue("--overlay-x").trim() === String(START.x);
+    const current = paintedAtStart ? { ...START } : { x: 0, y: 0 };
     const target = { x: 0, y: 0 };
     let frame = 0;
     let rendered = { x: NaN, y: NaN };
@@ -86,9 +92,15 @@ export function OverlayName({ lines }: { lines: string[] }) {
     render();
     const settle = window.setTimeout(animate, 450);
 
+    // Measuring on every pointermove forces layout right after render() dirtied
+    // the tree; measure once per hover and again after the page moves.
+    let rect: DOMRect | null = null;
+    const invalidateRect = () => {
+      rect = null;
+    };
     const onMove = (event: PointerEvent) => {
       if (event.pointerType !== "mouse" || motionQuery.matches) return;
-      const rect = root.getBoundingClientRect();
+      rect ??= root.getBoundingClientRect();
       target.x = clamp((event.clientX - (rect.left + rect.width / 2)) / 18);
       target.y = clamp((event.clientY - (rect.top + rect.height / 2)) / 8);
       animate();
@@ -102,14 +114,20 @@ export function OverlayName({ lines }: { lines: string[] }) {
       if (motionQuery.matches) snapHome();
     };
 
+    root.addEventListener("pointerenter", invalidateRect);
     root.addEventListener("pointermove", onMove);
     root.addEventListener("pointerleave", onLeave);
+    window.addEventListener("resize", invalidateRect);
+    window.addEventListener("scroll", invalidateRect, { passive: true });
     motionQuery.addEventListener("change", onMotionChange);
     return () => {
       window.clearTimeout(settle);
       cancelAnimationFrame(frame);
+      root.removeEventListener("pointerenter", invalidateRect);
       root.removeEventListener("pointermove", onMove);
       root.removeEventListener("pointerleave", onLeave);
+      window.removeEventListener("resize", invalidateRect);
+      window.removeEventListener("scroll", invalidateRect);
       motionQuery.removeEventListener("change", onMotionChange);
     };
   }, []);
@@ -149,9 +167,10 @@ export function OverlayName({ lines }: { lines: string[] }) {
         top="0"
         left="0"
         pointerEvents="none"
+        userSelect="none"
         transform="translate(calc(var(--overlay-x) * 1px), calc(var(--overlay-y) * 1px))"
         mixBlendMode={{ base: "multiply", _dark: "screen" }}
-        opacity="0.5"
+        opacity={OVERLAY_OPACITY}
         color="site.accent"
         {...nameType}
       >
@@ -178,14 +197,15 @@ export function OverlayName({ lines }: { lines: string[] }) {
 
       <Flex
         aria-hidden
+        userSelect="none"
         mt={{ base: "4", md: "5" }}
         align="center"
         gap="3"
         {...caption}
         fontSize="xs"
       >
-        <Box boxSize="2.5" bg="site.accent" opacity="0.5" />
-        <Text as="span">Overlay 50%</Text>
+        <Box boxSize="2.5" bg="site.accent" opacity={OVERLAY_OPACITY} />
+        <Text as="span">Overlay {Math.round(OVERLAY_OPACITY * 100)}%</Text>
         <Text as="span">
           X <Box as="span" display="inline-block" minW="3ch" _after={{ content: "counter(overlay-x)" }} />
         </Text>

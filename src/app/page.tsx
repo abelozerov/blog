@@ -67,6 +67,12 @@ const perfectPixelStores = [
   },
 ];
 
+// Section ids and nav labels come from one place so the anchors can't drift.
+const sections = {
+  projects: { id: "projects", title: "Projects" },
+  articles: { id: "articles", title: "Articles" },
+};
+
 // Newest first
 const articles = [
   {
@@ -146,19 +152,21 @@ export default function Home() {
         >
           AB
         </Link>
-        <HStack as="nav" aria-label="Sections" gap={{ base: "4", md: "6" }}>
-          {["Projects", "Articles"].map((label) => (
-            <Link
-              key={label}
-              href={`#${label.toLowerCase()}`}
-              fontSize="sm"
-              fontWeight="500"
-              color="site.muted"
-              _hover={{ color: "site.ink" }}
-            >
-              {label}
-            </Link>
-          ))}
+        <HStack gap={{ base: "4", md: "6" }}>
+          <HStack as="nav" aria-label="Sections" gap={{ base: "4", md: "6" }}>
+            {Object.values(sections).map(({ id, title }) => (
+              <Link
+                key={id}
+                href={`#${id}`}
+                fontSize="sm"
+                fontWeight="500"
+                color="site.muted"
+                _hover={{ color: "site.ink" }}
+              >
+                {title}
+              </Link>
+            ))}
+          </HStack>
           <ThemeToggle />
         </HStack>
       </Flex>
@@ -231,7 +239,7 @@ export default function Home() {
           />
         </Grid>
 
-        <Section id="projects" title="Projects">
+        <Section {...sections.projects}>
           <Box
             bg="site.surface"
             borderWidth="1px"
@@ -340,13 +348,14 @@ export default function Home() {
           </Box>
         </Section>
 
-        <Section id="articles" title="Articles">
+        <Section {...sections.articles}>
           {/* A stacked list on small screens; side-by-side columns across the full width on desktop */}
           <Grid
             as="ul"
             listStyle="none"
             templateColumns={{ base: "1fr", lg: "repeat(3, minmax(0, 1fr))" }}
             columnGap="10"
+            rowGap={{ base: "0", lg: "10" }}
           >
             {articles.map((article) => (
               <LinkBox

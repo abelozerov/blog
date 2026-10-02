@@ -18,11 +18,10 @@ const config = defineConfig({
       color: "site.canvas",
     },
     // Plain anchors (e.g. LinkOverlay); Link and IconButton recipes sit in a later
-    // cascade layer and draw their own ring, styled via the token and var above.
-    "a:focus-visible, button:focus-visible": {
-      outline: "2px solid",
-      outlineColor: "site.accent",
-      outlineOffset: "3px",
+    // cascade layer and draw their own ring. Both use the same utility, so the
+    // width, offset, and color come from the --focus-ring-* vars and token above.
+    "a, button": {
+      focusVisibleRing: "outside",
       borderRadius: "2px",
     },
   },
