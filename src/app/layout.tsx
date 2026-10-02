@@ -1,20 +1,14 @@
 // app/layout.tsx
 import type { Metadata, Viewport } from "next";
-import { Archivo, Martian_Mono } from "next/font/google";
+import { Archivo } from "next/font/google";
 import { ReactNode } from "react";
 import Providers from "./providers";
 
-// Variable width axes: the display type is set expanded, labels slightly condensed.
+// One family across its width axis: display set expanded, body regular, captions narrow.
 const archivo = Archivo({
   subsets: ["latin"],
   axes: ["wdth"],
   variable: "--font-archivo",
-});
-
-const martianMono = Martian_Mono({
-  subsets: ["latin"],
-  axes: ["wdth"],
-  variable: "--font-martian",
 });
 
 export const metadata: Metadata = {
@@ -49,7 +43,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html
       lang="en"
-      className={`${archivo.variable} ${martianMono.variable}`}
+      className={archivo.variable}
       suppressHydrationWarning
     >
       <body>

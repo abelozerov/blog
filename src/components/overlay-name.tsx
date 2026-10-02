@@ -2,7 +2,7 @@
 
 import { Box, Flex, Heading, Text } from "@chakra-ui/react";
 import { useEffect, useRef } from "react";
-import { monoLabel } from "./mono-label";
+import { caption } from "./caption";
 
 // PerfectPixel's trick applied to the name: a semi-transparent copy laid over
 // the real text. It loads misaligned and settles into place pixel by pixel;
@@ -181,9 +181,8 @@ export function OverlayName({ lines }: { lines: string[] }) {
         mt={{ base: "4", md: "5" }}
         align="center"
         gap="3"
-        {...monoLabel}
-        fontSize="2xs"
-        fontVariantNumeric="tabular-nums"
+        {...caption}
+        fontSize="xs"
       >
         <Box boxSize="2.5" bg="site.accent" opacity="0.5" />
         <Text as="span">Overlay 50%</Text>

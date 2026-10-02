@@ -19,8 +19,7 @@ import {
 import { ReactNode } from "react";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
-import { LuArrowUpRight } from "react-icons/lu";
-import { monoLabel } from "../components/mono-label";
+import { caption } from "../components/caption";
 import { OverlayName } from "../components/overlay-name";
 import { ThemeToggle } from "../components/ui/theme-toggle";
 
@@ -106,9 +105,14 @@ const formatDate = (iso: string) =>
 
 const external = { target: "_blank", rel: "noopener noreferrer" };
 
+// Body text width: keeps lines under ~80 characters.
+const measure = "34rem";
+
+const perfectPixelUrl = "https://www.welldonecode.com/perfectpixel/";
+
 function Section({ id, title, children }: { id: string; title: string; children: ReactNode }) {
   return (
-    <Box as="section" id={id} aria-labelledby={`${id}-title`} py={{ base: "10", md: "12" }}>
+    <Box as="section" id={id} aria-labelledby={`${id}-title`} py={{ base: "8", md: "10" }}>
       <Flex align="center" gap="5" mb={{ base: "6", md: "8" }}>
         <Heading
           as="h2"
@@ -166,16 +170,16 @@ export default function Home() {
           templateColumns={{ base: "1fr", md: "minmax(0, 7fr) minmax(0, 4fr)" }}
           gap={{ base: "8", md: "16" }}
           alignItems="end"
-          pt={{ base: "8", md: "20" }}
+          pt={{ base: "8", md: "12" }}
           pb={{ base: "6", md: "8" }}
         >
           <Stack gap="0">
             <OverlayName lines={["Alexey", "Belozerov"]} />
 
-            <Text mt={{ base: "8", md: "10" }} fontSize={{ base: "lg", md: "xl" }} fontWeight="650">
+            <Text mt="8" fontSize={{ base: "lg", md: "xl" }} fontWeight="650">
               Software Engineer
             </Text>
-            <Stack gap="4" mt="3" maxW="36rem" color="site.muted" lineHeight="1.65">
+            <Stack gap="4" mt="3" maxW={measure} color="site.muted" lineHeight="1.65">
               <Text>
                 Hello! I&apos;m Alexey Belozerov, a Software Engineer and digital nomad. I specialize
                 in developing web applications using technologies like Next.js, React.js,
@@ -244,14 +248,21 @@ export default function Home() {
                   <Image src="/perfectpixel-logo.png" alt="" boxSize="12" rounded="md" />
                   <Box>
                     <Heading as="h3" fontWeight="750" fontStretch="112.5%" fontSize="xl">
-                      PerfectPixel
+                      <Link
+                        href={perfectPixelUrl}
+                        {...external}
+                        color="inherit"
+                        _hover={{ color: "site.accent", textDecoration: "none" }}
+                      >
+                        PerfectPixel
+                      </Link>
                     </Heading>
-                    <Text {...monoLabel} mt="1">
+                    <Text {...caption} mt="1">
                       Creator and co-owner
                     </Text>
                   </Box>
                 </Flex>
-                <Text mt="5" maxW="38rem" color="site.muted" lineHeight="1.65">
+                <Text mt="5" maxW={measure} color="site.muted" lineHeight="1.65">
                   PerfectPixel allows developers and markup designers to put a semi-transparent
                   image overlay over the top of the developed HTML and perform pixel-perfect
                   comparison between them.
@@ -269,13 +280,13 @@ export default function Home() {
                 <Text
                   fontWeight="800"
                   fontStretch="125%"
-                  fontSize={{ base: "3xl", md: "4xl" }}
+                  fontSize="4xl"
                   lineHeight="1"
                   letterSpacing="-0.02em"
                 >
                   350,000+
                 </Text>
-                <Text {...monoLabel} mt="2">
+                <Text {...caption} mt="2">
                   monthly users
                 </Text>
               </Box>
@@ -316,15 +327,14 @@ export default function Home() {
                 ))}
               </Flex>
               <Link
-                href="https://www.welldonecode.com/perfectpixel/"
+                href={perfectPixelUrl}
                 {...external}
-                gap="1"
                 fontSize="sm"
                 fontWeight="600"
                 color="site.accent"
                 _hover={{ textDecoration: "underline", textUnderlineOffset: "3px" }}
               >
-                Visit website <LuArrowUpRight aria-hidden />
+                Visit website
               </Link>
             </Flex>
           </Box>
@@ -337,27 +347,32 @@ export default function Home() {
                 as="li"
                 key={article.href}
                 display="grid"
-                gridTemplateColumns={{ base: "1fr", md: "9rem minmax(0, 1fr) auto" }}
+                gridTemplateColumns={{ base: "1fr", md: "9rem minmax(0, 1fr)" }}
                 columnGap="8"
                 rowGap="2"
-                py={{ base: "5", md: "7" }}
+                py={{ base: "5", md: "6" }}
                 borderTopWidth="1px"
                 borderColor="site.rule"
                 css={{
                   "&:last-of-type": { borderBottomWidth: "1px" },
-                  "&:hover :is([data-title], [data-arrow])": { color: "site.accent" },
-                  _motionSafe: {
-                    "&:hover [data-arrow]": { transform: "translate(2px, -2px)" },
-                  },
+                  "&:hover [data-title]": { color: "site.accent" },
                 }}
               >
-                <Text {...monoLabel} pt={{ md: "1" }}>
+                <Flex
+                  {...caption}
+                  direction={{ base: "row", md: "column" }}
+                  columnGap="3"
+                  rowGap="1"
+                  pt={{ md: "1" }}
+                >
                   <time dateTime={article.date}>{formatDate(article.date)}</time>
-                </Text>
+                  <span>{article.publisher}</span>
+                </Flex>
                 <Box>
                   <Heading
                     as="h3"
                     data-title=""
+                    maxW="36rem"
                     fontWeight="650"
                     fontSize={{ base: "lg", md: "xl" }}
                     lineHeight="1.3"
@@ -369,23 +384,17 @@ export default function Home() {
                       {article.title}
                     </LinkOverlay>
                   </Heading>
-                  <Text mt="2" maxW="40rem" color="site.muted" lineHeight="1.6">
+                  <Text mt="2" maxW={measure} color="site.muted" lineHeight="1.6">
                     {article.summary}
                   </Text>
                 </Box>
-                <Flex {...monoLabel} align="center" gap="1" alignSelf="start" pt={{ md: "1" }}>
-                  {article.publisher}
-                  <Box as="span" data-arrow="" display="inline-flex" transition="transform 0.15s, color 0.15s">
-                    <LuArrowUpRight aria-hidden />
-                  </Box>
-                </Flex>
               </LinkBox>
             ))}
           </Box>
         </Section>
       </main>
 
-      <Box as="footer" py="10" {...monoLabel}>
+      <Box as="footer" py="8" {...caption}>
         © Alexey Belozerov
       </Box>
     </Container>

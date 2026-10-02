@@ -1,8 +1,8 @@
 // theme.ts
 import { createSystem, defaultConfig, defineConfig } from "@chakra-ui/react";
 
-// Palette is borrowed from PerfectPixel: a cool design-tool canvas with the
-// logo's magenta as the single accent (also the color of the hero overlay).
+// Palette is borrowed from PerfectPixel: a cool design-tool canvas (charcoal in dark
+// mode), plum ink, and the logo's magenta as the single accent and hero overlay color.
 const config = defineConfig({
   globalCss: {
     html: {
@@ -31,17 +31,20 @@ const config = defineConfig({
       fonts: {
         heading: { value: "var(--font-archivo), ui-sans-serif, system-ui, sans-serif" },
         body: { value: "var(--font-archivo), ui-sans-serif, system-ui, sans-serif" },
-        mono: { value: "var(--font-martian), ui-monospace, Menlo, monospace" },
+      },
+      // Bringhurst's classic scale: 21px replaces Chakra's 20px.
+      fontSizes: {
+        xl: { value: "1.3125rem" },
       },
     },
     semanticTokens: {
       colors: {
         site: {
-          canvas: { value: { base: "#F2F3F6", _dark: "#111217" } },
-          surface: { value: { base: "#FFFFFF", _dark: "#191B22" } },
-          ink: { value: { base: "#14151B", _dark: "#ECEDF2" } },
-          muted: { value: { base: "#5A5D6C", _dark: "#9A9EAD" } },
-          rule: { value: { base: "#DCDEE5", _dark: "#2A2D38" } },
+          canvas: { value: { base: "#F2F3F6", _dark: "#1F2028" } },
+          surface: { value: { base: "#FFFFFF", _dark: "#282A33" } },
+          ink: { value: { base: "#22182E", _dark: "#ECEDF2" } },
+          muted: { value: { base: "#5C5868", _dark: "#A6A9B7" } },
+          rule: { value: { base: "#DCDEE5", _dark: "#3A3D4A" } },
           accent: { value: { base: "#C2185F", _dark: "#FF6AA9" } },
         },
         // html's default colorPalette is gray, so this recolors every recipe focus ring.
