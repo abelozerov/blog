@@ -185,6 +185,17 @@ export default function Home() {
                       Edge Add-ons
                     </Link>
                   </Flex>
+                  <Flex align="center">
+                    <Image src="/firefox-addons-logo.svg" alt="Firefox Add-ons Logo" boxSize="24px" mr={2} />
+                    <Link
+                      href="https://addons.mozilla.org/en-US/firefox/addon/perfectpixel/"
+                      color="teal.500"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Firefox Add-ons
+                    </Link>
+                  </Flex>
                 </Flex>
               </Flex>
             </Box>
