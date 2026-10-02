@@ -68,6 +68,25 @@ const perfectPixelStores = [
   },
 ];
 
+const libraries = [
+  {
+    name: "ext-ab-testing",
+    href: "https://github.com/abelozerov/ext-ab-testing",
+    summary:
+      "A/B tests for Manifest V3 Chrome extensions: assign, persist and kill experiments with remote config, without a store re-release.",
+    article:
+      "https://hackernoon.com/how-i-run-ab-tests-in-a-chrome-extension-without-re-releasing-to-the-store",
+  },
+  {
+    name: "ext-send-chunked-message",
+    href: "https://github.com/abelozerov/ext-send-chunked-message",
+    summary:
+      "Sends large messages over chrome.runtime in Manifest V3 Chrome extensions by splitting them into chunks.",
+    article:
+      "https://hackernoon.com/large-files-transfers-between-parts-of-chrome-extensions-for-manifest-v3",
+  },
+];
+
 // Section ids and nav labels come from one place so the anchors can't drift.
 const sections = {
   projects: { id: "projects", title: "Projects" },
@@ -347,6 +366,71 @@ export default function Home() {
               </Link>
             </Flex>
           </Box>
+
+          <Text {...caption} mt={{ base: "8", md: "10" }}>
+            Open source
+          </Text>
+          <Grid
+            as="ul"
+            listStyle="none"
+            aria-label="Open source libraries"
+            templateColumns={{ base: "1fr", md: "repeat(2, minmax(0, 1fr))" }}
+            columnGap="10"
+            mt="4"
+          >
+            {libraries.map(({ name, href, summary, article }) => (
+              <Box
+                as="li"
+                key={name}
+                py={{ base: "5", md: "0" }}
+                borderColor="site.rule"
+                css={{
+                  "&:first-of-type": { pt: "0" },
+                  "&:not(:first-of-type)": { borderTopWidth: { base: "1px", md: "0" } },
+                }}
+              >
+                <Heading as="h3" fontWeight="650" fontSize="lg" lineHeight="1.3">
+                  <Link
+                    href={href}
+                    {...external}
+                    color="inherit"
+                    _hover={{ color: "site.accent", textDecoration: "none" }}
+                  >
+                    {name}
+                  </Link>
+                </Heading>
+                <Text mt="2" maxW={measure} color="site.muted" lineHeight="1.6">
+                  {summary}
+                </Text>
+                <HStack gap="5" mt="3">
+                  <Link
+                    href={href}
+                    {...external}
+                    aria-label={`${name} on GitHub`}
+                    gap="2"
+                    fontSize="sm"
+                    fontWeight="500"
+                    color="site.ink"
+                    _hover={{ color: "site.accent", textDecoration: "none" }}
+                  >
+                    <FaGithub />
+                    GitHub
+                  </Link>
+                  <Link
+                    href={article}
+                    {...external}
+                    aria-label={`Article about ${name}`}
+                    fontSize="sm"
+                    fontWeight="500"
+                    color="site.ink"
+                    _hover={{ color: "site.accent", textDecoration: "none" }}
+                  >
+                    Read the article
+                  </Link>
+                </HStack>
+              </Box>
+            ))}
+          </Grid>
         </Section>
 
         <Section {...sections.articles}>
