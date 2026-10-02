@@ -20,7 +20,7 @@ const martianMono = Martian_Mono({
 export const metadata: Metadata = {
   title: "Alexey Belozerov - Software Engineer",
   description:
-    "Alexey Belozerov is a Software Engineer specializing in web applications using Next.js, React.js, TypeScript, and Chrome Extensions.",
+    "Alexey Belozerov is a Software Engineer specializing in web applications using Next.js, React.js, TypeScript, and Chrome Extensions, who also works on AI: MCP, agents, agent harnesses, and skills.",
   keywords: [
     "Alexey Belozerov",
     "Software Engineer",
@@ -29,6 +29,9 @@ export const metadata: Metadata = {
     "TypeScript",
     "Chrome Extensions",
     "Web Development",
+    "AI",
+    "MCP",
+    "AI Agents",
   ],
   authors: [{ name: "Alexey Belozerov" }],
 };

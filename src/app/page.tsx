@@ -179,7 +179,8 @@ export default function Home() {
               <Text>
                 Hello! I&apos;m Alexey Belozerov, a Software Engineer and digital nomad. I specialize
                 in developing web applications using technologies like Next.js, React.js,
-                TypeScript, and Chrome Extensions.
+                TypeScript, and Chrome Extensions. I also work on AI: MCP, agents, agent
+                harnesses, and skills.
               </Text>
               <Text>
                 Currently, I serve as a Senior Product Engineer at Pumas-AI, Inc., leading remote
