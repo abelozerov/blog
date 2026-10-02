@@ -17,7 +17,7 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { ReactNode } from "react";
-import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { FaEnvelope, FaGithub, FaLinkedin } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { caption } from "../components/caption";
 import { OverlayName } from "../components/overlay-name";
@@ -35,6 +35,7 @@ function IndieHackersIcon() {
 }
 
 const socials = [
+  { label: "Email", href: "mailto:alex@welldonecode.com", icon: <FaEnvelope /> },
   {
     label: "LinkedIn",
     href: "https://www.linkedin.com/in/alexey-belozerov-660a252b/",
@@ -208,7 +209,7 @@ export default function Home() {
                 <li key={label}>
                   <Link
                     href={href}
-                    {...external}
+                    {...(href.startsWith("mailto:") ? {} : external)}
                     gap="2"
                     fontSize="sm"
                     fontWeight="500"
