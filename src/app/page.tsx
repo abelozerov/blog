@@ -41,8 +41,8 @@ const socials = [
     href: "https://www.linkedin.com/in/alexey-belozerov-660a252b/",
     icon: <FaLinkedin />,
   },
-  { label: "X", href: "https://x.com/abelozerov", icon: <FaXTwitter /> },
   { label: "GitHub", href: "https://github.com/abelozerov", icon: <FaGithub /> },
+  { label: "X", href: "https://x.com/abelozerov", icon: <FaXTwitter /> },
   {
     label: "Indie Hackers",
     href: "https://www.indiehackers.com/abelozerov",
