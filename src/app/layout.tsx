@@ -1,7 +1,21 @@
 // app/layout.tsx
 import type { Metadata, Viewport } from "next";
+import { Archivo, Martian_Mono } from "next/font/google";
 import { ReactNode } from "react";
 import Providers from "./providers";
+
+// Variable width axes: the display type is set expanded, labels slightly condensed.
+const archivo = Archivo({
+  subsets: ["latin"],
+  axes: ["wdth"],
+  variable: "--font-archivo",
+});
+
+const martianMono = Martian_Mono({
+  subsets: ["latin"],
+  axes: ["wdth"],
+  variable: "--font-martian",
+});
 
 export const metadata: Metadata = {
   title: "Alexey Belozerov - Software Engineer",
@@ -30,7 +44,11 @@ interface RootLayoutProps {
 
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html
+      lang="en"
+      className={`${archivo.variable} ${martianMono.variable}`}
+      suppressHydrationWarning
+    >
       <body>
         <Providers>{children}</Providers>
       </body>
