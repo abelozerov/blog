@@ -401,7 +401,14 @@ export default function Home() {
                 css={{ ...stackedItem("md"), "&:last-of-type": { pb: "0" } }}
               >
                 <Heading as="h3" fontWeight="650" fontSize="lg" lineHeight="1.3">
-                  {name}
+                  <Link
+                    href={href}
+                    {...external}
+                    color="inherit"
+                    _hover={{ color: "site.accent", textDecoration: "none" }}
+                  >
+                    {name}
+                  </Link>
                 </Heading>
                 <Text mt="2" maxW={measure} color="site.muted" lineHeight="1.6">
                   {summary}
@@ -410,7 +417,9 @@ export default function Home() {
                   <Link
                     href={href}
                     {...external}
-                    aria-label={`${name} on GitHub`}
+                    // The heading already links here; this one is a visual shortcut only.
+                    aria-hidden
+                    tabIndex={-1}
                     {...smallLink}
                     gap="2"
                   >
