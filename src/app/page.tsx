@@ -183,10 +183,11 @@ export default function Home() {
                 harnesses, and skills.
               </Text>
               <Text>
-                Currently, I serve as a Senior Product Engineer at Pumas-AI, Inc., leading remote
-                teams to build modern frontends. I co-founded WellDoneCode and created the popular
-                browser extension PerfectPixel, which helps web developers achieve pixel-perfect
-                designs.
+                I&apos;m a Senior Product Engineer at Pumas-AI, Inc., where I lead the remote team
+                behind one of the company&apos;s products, owning its roadmap and releases and working
+                with client-facing scientists to understand what users need. I co-founded
+                WellDoneCode and created the popular browser extension PerfectPixel, which helps web
+                developers achieve pixel-perfect designs.
               </Text>
             </Stack>
 
