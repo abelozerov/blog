@@ -164,9 +164,9 @@ export default function Home() {
           as="section"
           aria-label="About"
           templateColumns={{ base: "1fr", md: "minmax(0, 7fr) minmax(0, 4fr)" }}
-          gap={{ base: "10", md: "16" }}
+          gap={{ base: "8", md: "16" }}
           alignItems="end"
-          pt={{ base: "10", md: "20" }}
+          pt={{ base: "8", md: "20" }}
           pb={{ base: "6", md: "8" }}
         >
           <Stack gap="0">
@@ -215,9 +215,10 @@ export default function Home() {
             src="/profile.jpg"
             alt="Alexey Belozerov"
             w="100%"
-            maxW={{ base: "100%", md: "22rem" }}
+            maxW={{ base: "7.5rem", md: "22rem" }}
             justifySelf={{ md: "end" }}
-            aspectRatio={{ base: "1", md: "3 / 4" }}
+            order={{ base: -1, md: 0 }}
+            aspectRatio="3 / 4"
             objectFit="cover"
             objectPosition="50% 30%"
             rounded="md"
